@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {
+    "kreait/firebase-php": "^5.26"
+  }
+}
