@@ -2,8 +2,12 @@
 
 session_start();
 if (isset($_SESSION['seeker_has_login'])) {
-  header('Location: dashboard.php');
-  exit();
+  if($_SESSION['seeker_has_login'] == true){
+    if($_SESSION['role'] == 'EMPLOYER'){
+      header('Location: dashboard-employer.php');
+      exit();
+    }
+  }
 }
 
 ?>
@@ -39,7 +43,8 @@ if (isset($_SESSION['seeker_has_login'])) {
     <link rel="stylesheet" href="plugins/font-awesome/solid.css" /> -->
 
     <!-- # Main Style Sheet -->
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -55,8 +60,12 @@ if (isset($_SESSION['seeker_has_login'])) {
   <body>
     <!-- navigation -->
     <nav
-      style="height: 50px"
-      class="border border-bottom border-3 border-dark mb-5"></nav>
+      style="height: 80px"
+      class="border border-bottom border-3 border-dark mb-5 d-flex justify-content-between align-items-center px-5">
+      <div class="d-flex">
+        <a href="index.html" class="btn btn-dark mx-3">Home</a>
+      </div>
+    </nav>
     <div class="container">
       <h1 class="text-center">Log In as Employer</h1>
       <p class="text-center">
@@ -66,6 +75,7 @@ if (isset($_SESSION['seeker_has_login'])) {
       <div class="row mt-5">
         <div class="col-lg-5">
           <form id="login_form">
+            <input type="text" value="EMPLOYER" class="d-none" name="role">
             <div data-mdb-input-init class="form-outline mb-4">
               <label class="form-label" for="email">Email</label>
               <input

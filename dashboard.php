@@ -1,7 +1,21 @@
 <?php 
 
 session_start();
-if (!isset($_SESSION['seeker_has_login'])) {
+if (isset($_SESSION['seeker_has_login'])) {
+  if($_SESSION['seeker_has_login'] == false || $_SESSION['role'] != 'JOB SEEKER'){
+    if($_SESSION['role'] == 'ADMIN'){
+      header('Location: login-admin.php');
+    }
+    else if($_SESSION['role'] == 'EMPLOYER'){
+      header('Location: login-employer.php');
+    }
+    else{
+      header('Location: page-not-found.html');
+    }
+    exit();
+  }
+}
+else{
   header('Location: login-jobseeker.php');
   exit();
 }

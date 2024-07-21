@@ -1,5 +1,6 @@
 $(function(){
-  $(this).scrollTop(0);
+  // $(this).scrollTop(0);
+  window.scrollTo(0, 0);
   fetchuserProfile();
 })
 
@@ -17,14 +18,21 @@ function fetchuserProfile(){
               $('#'+key).text(val);
             }
             else if(key == 'path'){
-              $('#profileImage').attr('src', 'assets/images/profile_pictures/'+val);
+              if(val != undefined){
+                $('#profileImage').attr('src', 'assets/images/profile_pictures/'+val);
+              }
             }
             else{
               $('#'+key).val(val);
             }
         }
       }
-      $('#name').text(data['firstname'] + ' ' + data['lastname'])
+      if(data['firstname'] == undefined || data['lastname'] == undefined || data['firstname'] == '' || data['lastname'] == ''){
+        $('#name').text(data['name']);
+      }
+      else{
+        $('#name').text(data['firstname'] + ' ' + data['lastname']);
+      }
     }
   });
 }
@@ -92,6 +100,7 @@ $("#profile_form").submit(function (e) {
       processData: false,
       success: function(response) {
         if(response != false){
+          window.scrollTo(0, 0);
           swal.close();
           Swal.fire({
             position: "center",

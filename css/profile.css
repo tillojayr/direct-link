@@ -2,6 +2,7 @@ body {
   color: #8e9194;
   /* background-color: #f4f6f9; */
   background: linear-gradient(to right, #a8e5b8, #a2d0ea);
+  background-repeat: repeat-y;
 }
 .avatar-xl img {
   width: 110px;
