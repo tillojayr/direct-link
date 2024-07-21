@@ -2,8 +2,12 @@
 
 session_start();
 if (isset($_SESSION['seeker_has_login'])) {
-  header('Location: dashboard.php');
-  exit();
+  if($_SESSION['seeker_has_login'] == true){
+    if($_SESSION['role'] == 'JOB SEEKER'){
+      header('Location: dashboard.php');
+      exit();
+    }
+  }
 }
 
 ?>
@@ -39,12 +43,8 @@ if (isset($_SESSION['seeker_has_login'])) {
     <link rel="stylesheet" href="plugins/font-awesome/solid.css" /> -->
 
     <!-- # Main Style Sheet -->
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous" /> -->
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <style>
       body {
         background: linear-gradient(to right, #a8e5b8, #a2d0ea);
@@ -55,8 +55,12 @@ if (isset($_SESSION['seeker_has_login'])) {
   <body>
     <!-- navigation -->
     <nav
-      style="height: 50px"
-      class="border border-bottom border-3 border-dark mb-5"></nav>
+      style="height: 80px"
+      class="border border-bottom border-3 border-dark mb-5 d-flex justify-content-between align-items-center px-5">
+      <div class="d-flex">
+        <a href="index.html" class="btn btn-dark mx-3">Home</a>
+      </div>
+    </nav>
     <div class="container">
       <h1 class="text-center">Log In</h1>
       <p class="text-center">
@@ -66,6 +70,7 @@ if (isset($_SESSION['seeker_has_login'])) {
       <div class="row mt-5">
         <div class="col-lg-5">
           <form id="login_form">
+            <input type="text" value="JOB SEEKER" class="d-none" name="role">
             <div data-mdb-input-init class="form-outline mb-4">
               <label class="form-label" for="email">Email</label>
               <input
@@ -86,7 +91,7 @@ if (isset($_SESSION['seeker_has_login'])) {
             </div>
             <div></div>
             <div class="d-grid gap-2">
-              <button type="submit" id="login_button" class="btn btn-primary">
+              <button type="submit" id="login_button" class="btn btn-primary py-2">
                 Log In
               </button>
             </div>

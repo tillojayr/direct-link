@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['seeker_has_login'])) {
-  header('Location: login-jobseeker.php');
+  header('Location: login.php');
   exit();
 }
 
@@ -59,7 +59,7 @@ if (!isset($_SESSION['seeker_has_login'])) {
       style="height: 80px"
       class="border border-bottom border-3 border-dark mb-5 d-flex justify-content-between align-items-center px-5">
       <div class="d-flex">
-        <a href="dashboard.php" class="btn btn-dark mx-3">Dashboard</a>
+        <a href="dashboard-employer.php" class="btn btn-dark mx-3">Dashboard</a>
       </div>
       <div class="navbar-links">
         <!-- <a href=""
@@ -111,7 +111,7 @@ if (!isset($_SESSION['seeker_has_login'])) {
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-12 col-lg-10 col-xl-8 mx-auto">
-          <h2 class="h2 mb-2 page-title">Profile</h2>
+          <h2 class="h2 mb-2 page-title">Company Profile</h2>
           <div class="my-2">
             <form id="profile_form">
               <div class="row mt-5 align-items-center">
@@ -120,8 +120,8 @@ if (!isset($_SESSION['seeker_has_login'])) {
                     <img
                       src="https://bootdey.com/img/Content/avatar/avatar6.png"
                       alt="..."
-                      class="avatar-img rounded-circle"
-                      id="profileImage"/>
+                      class="avatar-img"
+                      id="profileImage" />
                   </div>
                   <div class="my-3">
                     <input class="form-control" accept="image/png, image/gif, image/jpeg" type="file" id="profile" name="profile">
